@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "931655101531",
+    "firebase_url": "https://dailyinterview-916f0.firebaseio.com",
+    "project_id": "dailyinterview-916f0",
+    "storage_bucket": "dailyinterview-916f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931655101531:android:d72cc4c84395d45280e37e",
+        "android_client_info": {
+          "package_name": "kr.huijoo.dailyinterview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931655101531-me80kfi4rq9qhjjv29iaal37q5q6q49v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.huijoo.dailyinterview",
+            "certificate_hash": "fd04bdd7122b40b04fda8b1932a8e944819f91d5"
+          }
+        },
+        {
+          "client_id": "931655101531-0l3phi0etq3lop24nsq0qv5meh19at49.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAThvkvPmOn-79IVVvhDikn6hrdrlVNqUs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931655101531-0l3phi0etq3lop24nsq0qv5meh19at49.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

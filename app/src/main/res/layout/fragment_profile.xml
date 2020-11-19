@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".fragment.ProfileFragment">
+
+    <TextView
+    android:id="@+id/profileText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="20dp"
+    android:fontFamily="sans-serif-black"
+    android:text="PROFILE"
+    android:textColor="@color/colorPrimary"
+    android:textSize="30sp"
+    android:textStyle="bold" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:id="@+id/textmode"
+            android:background="@android:color/transparent"
+            android:layout_width="50dp"
+            android:layout_height="27dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="60dp"
+            android:padding="0dp"
+            android:text="EDIT"
+            android:textColor="@color/colorPrimary"/>
+
+        <ImageView
+            android:id="@+id/full"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            android:src="@drawable/profileui"
+            android:scaleType="fitXY" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profilecircleimage"
+            android:layout_marginTop="130dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/profilecircleimg"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#ffffff"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="250dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="이름"
+                android:textColor="@color/maingreen"
+                android:textSize="17sp"
+                android:textStyle="bold|italic"
+                android:layout_marginBottom="5dp"/>
+
+            <FrameLayout
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/textUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="생년월일"
+                android:textColor="@color/maingreen"
+                android:textSize="17sp"
+                android:textStyle="bold|italic"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"/>
+
+            <FrameLayout
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/textprofiledate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/edittextprofilecompany"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="Target Company"
+                    android:textColorHint="@color/lightgray"
+                    android:textColor="@color/maingreen"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/textprofilecompany"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Target Company"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/edittextprofilejob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="Desire job"
+                    android:textColorHint="@color/lightgray"
+                    android:textColor="@color/maingreen"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="invisible"/>
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/textprofilejob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Desire job"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</FrameLayout>

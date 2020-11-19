@@ -1,0 +1,19 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/maingreen</item>
+    </style>
+    <style name="chipstyle" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="checkedIconTint">@color/black</item>
+    </style>
+    <style name="buttonstyle">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/graywhite</item>
+    </style>
+
+</resources>

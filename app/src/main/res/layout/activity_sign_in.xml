@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".activity.SignInActivity">
+
+    <TextView
+        android:id="@+id/profileText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="sans-serif-black"
+        android:text="SIGN IN"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom">
+
+        <ImageView
+            android:id="@+id/full"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            android:src="@drawable/profileui"
+            android:scaleType="fitXY" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profilecircleimage"
+            android:layout_marginTop="130dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/profilecircleimg"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#ffffff"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="250dp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="Enter the NAME"
+                    android:textColorHint="@color/lightgray"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/birth_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="Enter the Birth Date (YYMMDD)"
+                    android:textColorHint="@color/lightgray"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:inputType="numberSigned"/>
+
+            </FrameLayout>
+
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/sign_in_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="SIGN IN"
+                android:textColor="@color/colorPrimary" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</FrameLayout>
