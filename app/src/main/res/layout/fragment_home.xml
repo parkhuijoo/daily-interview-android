@@ -62,7 +62,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/today1"
                     android:layout_width="250dp"
-                    android:layout_height="250dp"
+                    android:layout_height="230dp"
                     android:layout_margin="10dp"
                     app:cardBackgroundColor="@color/maingreen"
                     app:cardCornerRadius="30dp">
@@ -140,7 +140,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/today2"
                     android:layout_width="250dp"
-                    android:layout_height="250dp"
+                    android:layout_height="230dp"
                     android:layout_margin="10dp"
                     app:cardBackgroundColor="@color/maingreen"
                     app:cardCornerRadius="30dp">

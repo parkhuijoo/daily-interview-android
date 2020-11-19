@@ -44,11 +44,23 @@ public class QuestionActivity extends AppCompatActivity {
     String currUserName;
     String currKey;
     ValueEventListener listener;
+    Boolean found = false;
 
     @Override
     protected void onStart() {
         super.onStart();
         startTime = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (!found) {
+            Toast.makeText(getApplicationContext(), "작성을 포기하셨습니다 :(", Toast.LENGTH_SHORT).show();
+            mDatabase.child("List").child(currKey).child("Comment").child(currUserName).setValue(
+                    new Comment("작성을 포기했습니다.", currUserName)
+            );
+        }
     }
 
     @Override
@@ -72,7 +84,7 @@ public class QuestionActivity extends AppCompatActivity {
                             commentsArrayList.add(tempComment);
                         }
                         adapter.notifyDataSetChanged();
-                        boolean found = false;
+                        found = false;
                         for (Comment comment : commentsArrayList) {
                             if (comment.getName().equals(currUserName)) {
                                 found = true;
