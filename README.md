@@ -1,6 +1,8 @@
 ##### Mobile Programming Project
 <img width="100" src="https://github.com/parkhuijoo/daily-interview-android/blob/main/imgs/logo.png">
+
 # Daily Interview
+
 소프트웨어학부 20181299 박희주
 https://github.com/parkhuijoo/daily-interview-android 에서 확인하실 수 있습니다.
 
