@@ -1,5 +1,12 @@
 package kr.huijoo.dailyinterview.model;
 
+/**
+ * Monthly.java
+ * 작성자 : 박희주
+ * V1.0
+ * Firebase DB 이달의 답변 모델
+ */
+
 public class Monthly {
     private String answer;
     private String img;

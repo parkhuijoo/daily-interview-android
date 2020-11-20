@@ -25,6 +25,13 @@ import kr.huijoo.dailyinterview.model.User;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * ProfileFragment.java
+ * 작성자 : 박희주
+ * V1.0
+ * 프로필 화면
+ */
+
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     public ProfileFragment() {}
@@ -43,6 +50,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     User temp = new User("", "", "", "");
     ValueEventListener listener;
 
+    /**
+     * Firebase DB 데이터 체인지 리스너는 백그라운드에서 돌면 안되므로, Resume에서 재할당
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -66,12 +76,18 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    /**
+     * Firebase DB 데이터 체인지 리스너는 백그라운드에서 돌면 안되므로, Pause에서 제거
+     */
     @Override
     public void onPause() {
         super.onPause();
         mDatabase.removeEventListener(listener);
     }
 
+    /**
+     * 레이아웃 파일 주입
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -87,8 +103,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         TextView4 = view.findViewById(R.id.textprofilejob);
         modeBtn.setOnClickListener(this);
 
+        // 현재 로그인된 유저의 이름 가져옴
         pref = getActivity().getSharedPreferences("kr.huijoo.dailyinterview", MODE_PRIVATE);
-
         currUserName = pref.getString("userName", "");
 
         return view;
@@ -96,6 +112,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        // 버튼을 눌렀을 때 버튼의 텍스트에 따라 액션이 달라짐
         if (String.valueOf(modeBtn.getText()).equals("SAVE")){
             String temp3 = EditText3.getText().toString();
             TextView3.setText(temp3);

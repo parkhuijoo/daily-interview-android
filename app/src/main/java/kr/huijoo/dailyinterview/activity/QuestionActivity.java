@@ -31,6 +31,12 @@ import kr.huijoo.dailyinterview.R;
 import kr.huijoo.dailyinterview.model.Comment;
 import kr.huijoo.dailyinterview.model.QList;
 
+/**
+ * QuestionActivity.java
+ * 작성자 : 박희주
+ * V1.0
+ */
+
 public class QuestionActivity extends AppCompatActivity {
 
     private Intent intent;
@@ -46,12 +52,18 @@ public class QuestionActivity extends AppCompatActivity {
     ValueEventListener listener;
     Boolean found = false;
 
+    /**
+     * 액티비티가 생성될 때의 시간을 초단위로 기억(3분 타이머 계산용)
+     */
     @Override
     protected void onStart() {
         super.onStart();
         startTime = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
     }
 
+    /**
+     * 액티비티가 종료될 때, 아직 내 답변이 작성되지 않았다면, 작성포기 Firebase DB에 추가
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -63,12 +75,16 @@ public class QuestionActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Firebase DB 데이터 체인지 리스너는 백그라운드에서 돌면 안되므로, Resume에서 재할당
+     */
     @Override
     protected void onResume() {
         super.onResume();
         listener = mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                // 기존 리스트(어댑터에 물려있는)는 비우고 변경된 데이터들을 넣은 뒤 어댑터에 notify
                 commentsArrayList.clear();
                 QList temp = new QList();
                 for (DataSnapshot fileSnapshot : dataSnapshot.child("List").getChildren()) {
@@ -84,6 +100,8 @@ public class QuestionActivity extends AppCompatActivity {
                             commentsArrayList.add(tempComment);
                         }
                         adapter.notifyDataSetChanged();
+
+                        // 만약 내 댓글을 작성했을 경우, 답변 작성 UI는 숨기고 다른 사람들의 답변 목록을 보여줌
                         found = false;
                         for (Comment comment : commentsArrayList) {
                             if (comment.getName().equals(currUserName)) {
@@ -101,6 +119,8 @@ public class QuestionActivity extends AppCompatActivity {
                         break;
                     }
                 }
+
+                // 질문 UI에 데이터 주입
                 TextView date = findViewById(R.id.tv_dateholder);
                 date.setText(temp.getListdate() + " Question");
                 TextView question = findViewById(R.id.tv_titleholder);
@@ -119,6 +139,9 @@ public class QuestionActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Firebase DB 데이터 체인지 리스너는 백그라운드에서 돌면 안되므로, Pause에서 제거
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -129,10 +152,16 @@ public class QuestionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
+
+        // 현재 로그인된 User의 이름 정보 가져옴 from 프레퍼런스
         pref = getSharedPreferences("kr.huijoo.dailyinterview", MODE_PRIVATE);
         currUserName = pref.getString("userName", "");
+
+        // Intent에서 넘어오는 질문 제목 가져옴
         intent = getIntent();
         title = intent.getStringExtra("title");
+
+        // RecyclerView와 어댑터 생성
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new LastAdapter(commentsArrayList, BR.listContent)
@@ -144,6 +173,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         Button saveBtn = findViewById(R.id.answer_mode);
         saveBtn.setOnClickListener(new View.OnClickListener() {
+            // 저장 버튼 클릭 리스너 부착, 3분 초과시 답변 작성 초과 DB에 저장, 그외의 경우 정상적으로 답변 등록
             @Override
             public void onClick(View view) {
                 String text = editText.getText().toString();

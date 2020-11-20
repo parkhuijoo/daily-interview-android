@@ -21,6 +21,12 @@ import java.util.ArrayList;
 import kr.huijoo.dailyinterview.R;
 import kr.huijoo.dailyinterview.model.User;
 
+/**
+ * SignInActivity.java
+ * 작성자 : 박희주
+ * V1.0
+ */
+
 public class SignInActivity extends AppCompatActivity {
 
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -36,15 +42,11 @@ public class SignInActivity extends AppCompatActivity {
     ArrayList<User> nowUserList = new ArrayList<>();
 
     @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+        // 현재 가입된 유저들의 정보를 가져옴
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -67,6 +69,7 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
+        // 로그인에 성공할 경우 프레퍼런스에 로그인 정보를 저장하기 위해 에디터 선언
         pref = getSharedPreferences("kr.huijoo.dailyinterview", MODE_PRIVATE);
         editor = pref.edit();
 
@@ -74,16 +77,20 @@ public class SignInActivity extends AppCompatActivity {
         name = findViewById(R.id.user_name);
         birthDate = findViewById(R.id.birth_date);
 
+        // 로그인 버튼 클릭 리스너
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 tryName = name.getText().toString();
                 tryBirth = birthDate.getText().toString();
+
+                // 필드가 비어있을 경우
                 if (tryName.isEmpty() || tryBirth.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "모든 항목을 입력해주세요!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                // 생일 정보가 6자리가 아닐 경우(잘못된 양식)
                 if (tryBirth.length() != 6) {
                     Toast.makeText(getApplicationContext(), "생일 정보가 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
                     return;
@@ -91,6 +98,7 @@ public class SignInActivity extends AppCompatActivity {
 
                 String targetBirth = "";
 
+                // 기존에 가입했던 유저인지 확인하고, 가입한 유저라면 DB의 생일 정보를 로드해옴
                 for (User user : nowUserList) {
                     if (user.getName().equals(tryName)) {
                         already = true;
@@ -99,18 +107,19 @@ public class SignInActivity extends AppCompatActivity {
                     }
                 }
 
+                // 기존 유저라면 입력한 생일 정보와 DB의 생일 정보가 일치하는지 확인
                 if (already && targetBirth.equals(tryBirth)) {
                     canLogin = true;
                 }
 
-                if (already && canLogin) {
+                if (already && canLogin) { // 기존 유저이고 정보가 올바르다면
                     Toast.makeText(getApplicationContext(), "기존 계정으로 로그인 했습니다!", Toast.LENGTH_SHORT).show();
                     editor.putString("userName", name.getText().toString());
                     editor.apply();
                     finish();
-                } else if (already && !canLogin) {
+                } else if (already && !canLogin) { // 기존 유저이고 생일 정보가 틀렸다면
                     Toast.makeText(getApplicationContext(), "생일 정보를 다시 확인하세요!", Toast.LENGTH_SHORT).show();
-                } else {
+                } else { // 새로운 유저라면
                     Toast.makeText(getApplicationContext(), "새로운 계정으로 회원가입 했습니다!", Toast.LENGTH_SHORT).show();
                     editor.putString("userName", name.getText().toString());
                     editor.apply();

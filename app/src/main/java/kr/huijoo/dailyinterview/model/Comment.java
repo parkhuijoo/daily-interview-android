@@ -1,5 +1,12 @@
 package kr.huijoo.dailyinterview.model;
 
+/**
+ * Comment.java
+ * 작성자 : 박희주
+ * V1.0
+ * Firebase DB 댓글 모델
+ */
+
 public class Comment {
     private String content;
     private String name;

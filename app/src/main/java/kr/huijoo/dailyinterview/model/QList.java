@@ -1,5 +1,12 @@
 package kr.huijoo.dailyinterview.model;
 
+/**
+ * QList.java
+ * 작성자 : 박희주
+ * V1.0
+ * Firebase DB 질문 목록 모델
+ */
+
 public class QList {
     private String listimg;
     private String listdate;

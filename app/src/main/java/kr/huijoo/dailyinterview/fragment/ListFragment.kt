@@ -22,6 +22,14 @@ import kr.huijoo.dailyinterview.databinding.ListItemBinding
 import kr.huijoo.dailyinterview.model.QList
 import java.util.*
 
+/**
+ * ListFragment.kt
+ * 작성자 : 박희주
+ * V1.0
+ * 질문 목록 화면
+ * 코틀린으로 작성(LastAdapter의 코틀린 지원)
+ */
+
 class ListFragment : Fragment() {
     var mDatabase = FirebaseDatabase.getInstance().reference
     var recyclerView: RecyclerView? = null
@@ -29,10 +37,14 @@ class ListFragment : Fragment() {
     var adapter: LastAdapter? = null
     var listener: ValueEventListener? = null
 
+    /**
+     * Firebase DB 데이터 체인지 리스너는 백그라운드에서 돌면 안되므로, Resume에서 재할당
+     */
     override fun onResume() {
         super.onResume()
         listener = mDatabase.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // 질문 목록 데이터 재로딩
                 qListsArrayList.clear()
                 for (fileSnapshot in dataSnapshot.child("List").children) {
                     val temp = QList()
@@ -50,15 +62,22 @@ class ListFragment : Fragment() {
         })
     }
 
+    /**
+     * Firebase DB 데이터 체인지 리스너는 백그라운드에서 돌면 안되므로, Pause에서 제거
+     */
     override fun onPause() {
         super.onPause()
         mDatabase.removeEventListener(listener!!)
     }
 
+    /**
+     * 레이아웃 파일 주입 및 리사이클러뷰 주입
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_list, container, false)
         recyclerView = view.findViewById<View>(R.id.recyclerview_list) as RecyclerView
         recyclerView!!.layoutManager = LinearLayoutManager(context)
+        // LastAdapter 사용하여 데이터 매핑하면서 동시에 클릭 리스너까지 부착
         adapter = LastAdapter(qListsArrayList, BR.listContent)
                 .map<QList, ListItemBinding>(R.layout.list_item) {
                     onBind {
